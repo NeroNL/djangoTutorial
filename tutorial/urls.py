@@ -17,7 +17,4 @@ from django.conf.urls import *
 from tutorial.view import hello
 from tutorial.testDb import testdb
 
-urlpatterns = patterns("",
-    ('^hello/$', hello),
-                       
-)
+urlpatterns = {}
