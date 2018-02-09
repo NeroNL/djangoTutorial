@@ -16,9 +16,12 @@ Including another URLconf
 from django.conf.urls import *
 from tutorial.view import hello
 from tutorial.testDb import testdb1, testdb2
+from tutorial import search
 
 urlpatterns = {url('^hello/$', hello),
                url('^testdb1/$', testdb1),
-               url('^testdb2$', testdb2),
+               url('^testdb2/$', testdb2),
+               url('^search_form/$', search.search_form),
+               url('^search/$', search.search),
                url(r'^$', hello)
                }
