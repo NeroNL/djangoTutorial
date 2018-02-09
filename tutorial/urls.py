@@ -23,5 +23,6 @@ urlpatterns = {url('^hello/$', hello),
                url('^testdb2/$', testdb2),
                url('^search_form/$', search.search_form),
                url('^search/$', search.search),
+               url('^post_form/$', search.search_post),
                url(r'^$', hello)
                }
