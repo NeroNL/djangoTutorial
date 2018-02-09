@@ -14,15 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import *
+from django.contrib import admin
 from tutorial.view import hello
 from tutorial.testDb import testdb1, testdb2
 from tutorial import search
 
-urlpatterns = {url('^hello/$', hello),
+admin.autodiscover()
+urlpatterns = [url('^hello/$', hello),
                url('^testdb1/$', testdb1),
                url('^testdb2/$', testdb2),
                url('^search_form/$', search.search_form),
                url('^search/$', search.search),
                url('^post_form/$', search.search_post),
+               url(r'admin/', include(admin.site.urls)),
                url(r'^$', hello)
-               }
+               ]
