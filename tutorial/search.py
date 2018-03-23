@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
-from django.http import HttpResponse
 from django.shortcuts import render_to_response, render
 from django.template.context_processors import csrf
+
+from BookList.models import Book
 
 
 # form
@@ -13,12 +14,19 @@ def search_form(request):
 
 # receive request data
 def search(request):
-    request.encoding='utf-8'
+    errors = []
     if 'q' in request.GET:
-        message = 'Search Content:' + request.GET['q'].encode('utf-8')
-    else:
-        message = 'You submitted an empty form'
-    return HttpResponse(message)
+        q = request.GET['q']
+        if not q:
+            errors.append('Enter a search term.')
+        elif len(q) > 20:
+            errors.append('Please enter at most 20 characters.')
+        else:
+            books = Book.objects.filter(title__icontains=q)
+            return render_to_response('search_result.html.html',
+                                      {'books': books, 'query': q})
+    return render_to_response('search_form.html.html',
+                              {'errors': errors})
 
 
 def search_post(request):

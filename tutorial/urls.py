@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import *
 from django.contrib import admin
-from tutorial.view import hello, currentTime, hours_ahead
+from tutorial.contact import contact
+from tutorial.view import hello, currentTime, hours_ahead, meta_data
 from tutorial.testDb import testdb1, testdb2
 from tutorial import search
 
@@ -29,5 +30,7 @@ urlpatterns = [url('^hello/$', hello),
                url(r'admin/', include(admin.site.urls)),
                url(r'^currentTime$', currentTime),
                url(r'^currentTime/plus/\d+/$', hours_ahead),
+               url(r'^metadata/$', meta_data),
+               url(r'^contact/$', contact),
                url(r'^$', hello)
                ]

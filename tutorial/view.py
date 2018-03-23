@@ -1,6 +1,7 @@
+import datetime
+
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, render_to_response
-import datetime
 
 
 def hello(request):
@@ -15,8 +16,8 @@ def currentTime(request):
     c['current_time'] = now
     return render_to_response('currentTime.html', c)
 
+
 def hours_ahead(request):
-    print request
     path = request.path
     start = path.find('plus/')+5
     end = path.find('/', start)
@@ -28,3 +29,10 @@ def hours_ahead(request):
     dt = datetime.datetime.now() + datetime.timedelta(hours=offset)
     html = "<html><body>In %s hours, it will be %s</body></html>" % (offset, dt)
     return HttpResponse(html)
+
+
+def meta_data(request):
+    values = request.META.items()
+    values.sort()
+    meta = {'values': values}
+    return render_to_response('requestMeta.html', meta)
