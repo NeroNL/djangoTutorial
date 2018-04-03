@@ -36,3 +36,9 @@ def meta_data(request):
     values.sort()
     meta = {'values': values}
     return render_to_response('requestMeta.html', meta)
+
+
+def print_article(request, year, month, day):
+    print month, day, year
+    html = "<html><body>This article you are looking for is published in %s/%s/%s</body></html>" % (month, day, year)
+    return HttpResponse(html)

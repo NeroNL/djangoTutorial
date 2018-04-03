@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import *
 from django.contrib import admin
 from tutorial.contact import contact
-from tutorial.view import hello, currentTime, hours_ahead, meta_data
+from tutorial.view import hello, currentTime, hours_ahead, meta_data, print_article
 from tutorial.testDb import testdb1, testdb2
 from tutorial import search
 
@@ -32,5 +32,6 @@ urlpatterns = [url('^hello/$', hello),
                url(r'^currentTime/plus/\d+/$', hours_ahead),
                url(r'^metadata/$', meta_data),
                url(r'^contact/$', contact),
-               url(r'^$', hello)
+               url(r'^$', hello),
+               url(r'^articles/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})$', print_article),
                ]
